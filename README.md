@@ -48,6 +48,6 @@
    [sch]:		<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/images/sch.png>
    [sch-pdf]:	<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/hardware/AutoExhaustFan.pdf>
    [photos]:	<https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/images/photos>
-   [closeup]:	<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/master/images/photos/full_set.JPG>
+   [closeup]:	<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/images/photos/full_set.JPG>
    [sw]:		<https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/software/AutoExhaustFan>
    [libs]:		<https://playground.arduino.cc/Main/DHT11Lib>
