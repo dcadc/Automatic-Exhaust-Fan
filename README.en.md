@@ -1,9 +1,9 @@
 # Automatic-Exhaust-Fan
 A portable exhaust fan with sensing and auto-shutdown function   
 Let's get rid of mushrooms growing in bathroom from now on!
-
+   
  ![Automatic-Exhaust-Fan][closeup]   
-
+   
 **Features**
 * Avoid using AC adapter in a humid environment.   
 * The circuit is simple enough to fit in a waterproof plastic food container.   
@@ -14,16 +14,29 @@ Let's get rid of mushrooms growing in bathroom from now on!
 * Easily set up the turn-on mode through a 4pin mode jumper   
   ( Normal Mode / Serial debug on / Readout EEPROM / Clear EEPROM / Datalogger mode )   
   refer to the schematic below   
-  
+   
+   
 **To be done**
 * Adding a tiny I2C OLED (128*32) with sleep mode   
 * Adding capacitive sensing pads / slider for a non-contact input interface    
 * Adding a buzzer to notify when job is done   
 * A modern but simple interface that doesn't need much intelligence while using   
-  
+   
+   
+**Default Software Specifications**
+|	 							|	Parameter		| Units |	Notes							|
+|-------------------------------|:-----------------:|:-----:|-----------------------------------|
+|	Arduino Board				|	Pro	Mini 16MHz	|	-	|	8MHz untested					|
+|	Fan Refresh Cycle			|	4				|	sec	|	timer1	ISR						|
+|	Data Logging Cycle			|	60				|	sec	|	timer1	ISR*15					|
+|	DHT Sampling Cycle			|	1.5				|	sec	|	needs >1 second					|
+|	Size of Average Data Set	|	10				|	-	|	only record the average data	|
+   
+   
 **How to build one**
 * Schematic :   
  ![Schematic][sch]   
+   
    
 * Hardware :   
  Follow the [schematic][sch-pdf] and [my photos][photos] , you can make it easily.   
