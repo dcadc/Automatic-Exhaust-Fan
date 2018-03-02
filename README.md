@@ -1,6 +1,7 @@
 # 開後不理抽風機
 一個能偵測/紀錄溫溼度、自動關機的簡易抽風系統，讓你擺脫浴室裡面長香菇的惡夢   
 
+ ![開後不理抽風機][closeup]   
 
 **功能特色**
 * 避免使用浴室內的AC插座   
@@ -44,8 +45,9 @@
 *Read this in other languages: [English](README.en.md), [正體中文](README.md).*  
 
 
-   [sch]: <https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/images/sch.png>
-   [sch-pdf]: <https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/hardware/AutoExhaustFan.pdf>
-   [photos]: <https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/images/photos>
-   [sw]: <https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/software/AutoExhaustFan>
-   [libs]: <https://playground.arduino.cc/Main/DHT11Lib>
+   [sch]:		<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/images/sch.png>
+   [sch-pdf]:	<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/hardware/AutoExhaustFan.pdf>
+   [photos]:	<https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/images/photos>
+   [closeup]:	<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/master/images/photos/full_set.JPG>
+   [sw]:		<https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/software/AutoExhaustFan>
+   [libs]:		<https://playground.arduino.cc/Main/DHT11Lib>

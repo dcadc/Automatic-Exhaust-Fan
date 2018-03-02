@@ -2,6 +2,7 @@
 A portable exhaust fan with sensing and auto-shutdown function   
 Let's get rid of mushrooms growing in bathroom from now on!
 
+ ![Automatic-Exhaust-Fan][closeup]   
 
 **Features**
 * Avoid using AC adapter in a humid environment.   
@@ -41,8 +42,9 @@ Let's get rid of mushrooms growing in bathroom from now on!
   
 *Read this in other languages: [English](README.en.md), [正體中文](README.md).*  
 
-   [sch]: <https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/images/sch.png>
-   [sch-pdf]: <https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/hardware/AutoExhaustFan.pdf>
-   [photos]: <https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/images/photos>
-   [sw]: <https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/software/AutoExhaustFan>
-   [libs]: <https://playground.arduino.cc/Main/DHT11Lib>
+   [sch]:		<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/images/sch.png>
+   [sch-pdf]:	<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/hardware/AutoExhaustFan.pdf>
+   [photos]:	<https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/images/photos>
+   [closeup]:	<https://rawgit.com/dcadc/Automatic-Exhaust-Fan/master/master/images/photos/full_set.JPG>
+   [sw]:		<https://github.com/dcadc/Automatic-Exhaust-Fan/tree/master/software/AutoExhaustFan>
+   [libs]:		<https://playground.arduino.cc/Main/DHT11Lib>
