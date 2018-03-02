@@ -4,7 +4,7 @@ Let's get rid of mushrooms growing in bathroom from now on!
    
  ![Automatic-Exhaust-Fan][closeup]   
    
-**Features**
+## Features
 * Avoid using AC adapter in a humid environment.   
 * The circuit is simple enough to fit in a waterproof plastic food container.   
 * Using a powerbank with low current shutoff function, the energy saving function can be simply implemented.   
@@ -16,14 +16,8 @@ Let's get rid of mushrooms growing in bathroom from now on!
   refer to the schematic below   
    
    
-**To be done**
-* Adding a tiny I2C OLED (128*32) with sleep mode   
-* Adding capacitive sensing pads / slider for a non-contact input interface    
-* Adding a buzzer to notify when job is done   
-* A modern but simple interface that doesn't need much intelligence while using   
-   
-   
 **Default Software Specifications**
+   
 |	 							|	Parameter		| Units |	Notes							|
 |-------------------------------|:-----------------:|:-----:|-----------------------------------|
 |	Arduino Board				|	Pro	Mini 16MHz	|	-	|	8MHz untested					|
@@ -33,7 +27,15 @@ Let's get rid of mushrooms growing in bathroom from now on!
 |	Size of Average Data Set	|	10				|	-	|	only record the average data	|
    
    
-**How to build one**
+**To be done**
+* Adding a tiny I2C OLED (128*32) with sleep mode   
+* Adding capacitive sensing pads / slider for a non-contact input interface    
+* Adding a buzzer to notify when job is done   
+* A modern but simple interface that doesn't need much intelligence while using   
+   
+   
+## How to build one   
+
 * Schematic :   
  ![Schematic][sch]   
    
