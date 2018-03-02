@@ -1,5 +1,5 @@
 # Automatic-Exhaust-Fan
-A portable exhaust fan with sensing and auto-shutdown function
+A portable exhaust fan with sensing and auto-shutdown function   
 Let's get rid of mushrooms growing in bathroom from now on!
 
 
