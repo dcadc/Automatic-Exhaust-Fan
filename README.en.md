@@ -28,7 +28,7 @@ Let's get rid of mushrooms growing in bathroom from now on!
  Follow the [schematic][sch-pdf] and [my photos][photos] , you can make it easily.   
    
 * Software :   
- Open the schetch [/software/AutoExhaustFan][sw] using the Arduino IDE  
+ Open the sketch [/software/AutoExhaustFan][sw] using the Arduino IDE  
   - External libraries   
 	 - [Sketch] → [Iclude library] → [Manage Libraries] and search for "DHT"  
 	 - Select "DHT Sensor library by adafruit" and Click the [Install] button.  
