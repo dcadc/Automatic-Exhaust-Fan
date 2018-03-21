@@ -2,12 +2,12 @@
 #include <dht11.h>
 
 // Bitwise operation macro
-#define _CONFIG(x) 				(bit_is_set(config, x))
+#define _CONFIG(x)				(bit_is_set(config, x))
 #define bit_is_set(sfr, bit)	(_SFR_BYTE(sfr) & _BV(bit))
 #define cbi(sfr, bit)			(_SFR_BYTE(sfr) &= ~_BV(bit))
 #define sbi(sfr, bit)			(_SFR_BYTE(sfr) |= _BV(bit))
 #define tbi(sfr, bit)			(_SFR_BYTE(sfr) ^= _BV(bit))	//for bit toggling
-
+// Code / string conversion
 #define STR_EXPAND(tok) #tok
 #define STR(tok) STR_EXPAND(tok)
 
@@ -30,10 +30,10 @@
 #define EEPROM_LOG_JP	6		// Jumper: Datalogger Mode
 #define NO_JOB_SWITCH	8		// Jumper: No Job
 
-#define AVERAGE_SIZE	10		// The amount of data to be averaged
-#define DATA_THRESHOLD	10.0	// Threshold to turn off the fan
-#define TURN_OFF_CONDITION		(data_array[AVERAGE_SIZE] < DATA_THRESHOLD)
-#define VARIABLE_TO_DETECT	 	hum
+#define DATASET_SIZE	10		// The amount of data to be averaged
+#define DATA_THRESHOLD	28.0	// Threshold to turn off the fan
+#define TURN_OFF_CONDITION		(data_array[DATASET_SIZE] < DATA_THRESHOLD)
+#define VARIABLE_TO_DETECT	 	hum	//temp, hum, dew
 #define BLANK_F_RECORD	0.0f	// The initial blank value in the data array or EEPROM
 #define hi_Z			-1		// state detection being used b jumperDetect()
 
@@ -46,10 +46,10 @@ byte config = 0x00;				// Global config flags: control jobs directly through bit
 const int 				top_timer1 = 62499;			// 4 sec when Prescaler == 1024
 volatile unsigned long	msec_timer1;				// punch in time for timer1 ISR
 unsigned long			msec_capture;				// punch in time for capture routine in main loop
-unsigned long			msec_serial;				// punch in time for capture routine in main loop
+unsigned long			msec_serial;				// punch in time for serial routine in main loop
 
 float hum, tmp, dew;
-float data_array[AVERAGE_SIZE+1] = {BLANK_F_RECORD};// +1 because the last element is for calculated value
+float data_array[DATASET_SIZE+1] = {BLANK_F_RECORD};// +1 because the last element is for calculated value
 
 short record_idx = 0; 			// EEPROM address pointer, being used by the record function
 byte data_array_idx = 0; 		// only being used by the main loop capture routine
@@ -139,7 +139,7 @@ void dumpEEP(){
 void record(){
 	// log the captured data into EEPROM
 	if(record_idx < EEPROM.length()){
-		float value = data_array[AVERAGE_SIZE];
+		float value = data_array[DATASET_SIZE];
 		EEPROM.put(record_idx, value);
 		record_idx+=sizeof(value);
 	}
@@ -155,15 +155,15 @@ void average(){
 	// average the data captured in the array and store the averaged value in the last element
 	// this function ignores blank element when averaging
 	byte avg_idx, blank_fields;
-	data_array[AVERAGE_SIZE] = 0;
+	data_array[DATASET_SIZE] = 0;
 	blank_fields = 0;
-	for(avg_idx = 0; avg_idx < AVERAGE_SIZE; avg_idx++){
+	for(avg_idx = 0; avg_idx < DATASET_SIZE; avg_idx++){
 		if(data_array[avg_idx] != BLANK_F_RECORD)
-			data_array[AVERAGE_SIZE] += data_array[avg_idx];
+			data_array[DATASET_SIZE] += data_array[avg_idx];
 		else
 			blank_fields++;
 	}
-	data_array[AVERAGE_SIZE]/=(AVERAGE_SIZE-blank_fields);
+	data_array[DATASET_SIZE]/=(DATASET_SIZE-blank_fields);
 	return 0;
 }
 
@@ -222,8 +222,12 @@ void configExecute(){
 	// initiate other switches
 	if(_CONFIG(SERIAL_DBG_JP)){
 		Serial.println(F("Welcome to the console!"));
+		
+
+#ifdef DHT11LIB_VERSION
 		Serial.print(F("DHT11 LIBRARY VERSION: "));
 		Serial.println(DHT11LIB_VERSION);
+#endif
 		Serial.print(F("D4: "));
 		Serial.println(jumperDetect(4));
 		Serial.print(F("D5: "));
@@ -276,8 +280,11 @@ void loop(){
 	if( millis() > msec_capture + 1500 ){
 		msec_capture = millis();
 		int chk = DHT11.read(DHT11_DATA_PIN);	
+		
 		if(_CONFIG(SERIAL_DBG_JP)){
 			Serial.println(F("\n"));
+
+#ifdef DHT11LIB_VERSION
 			Serial.print(F("Read sensor: "));
 			switch (chk){
 			case DHTLIB_OK: 
@@ -293,6 +300,7 @@ void loop(){
 				Serial.println(F("Unknown error")); 
 				break;
 			}
+#endif
 		}
 
 		hum = DHT11.humidity;
@@ -301,7 +309,7 @@ void loop(){
 		
 		data_array[data_array_idx] = VARIABLE_TO_DETECT;
 		data_array_idx++;
-		if(data_array_idx > (AVERAGE_SIZE-1))data_array_idx = 0;
+		if(data_array_idx > (DATASET_SIZE-1))data_array_idx = 0;
 		
 		average();
 		
@@ -324,7 +332,7 @@ void loop(){
 		Serial.print(F("Averaged "));
 		Serial.print(F(STR(VARIABLE_TO_DETECT)));
 		Serial.print(F(": \t\t"));
-		Serial.println(data_array[AVERAGE_SIZE], 2);
+		Serial.println(data_array[DATASET_SIZE], 2);
 		
 		Serial.print(F("OUTPUT: \t\t"));
 		Serial.println(bit_is_set(PORTB, 3)?"OFF":"ON");
